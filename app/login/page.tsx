@@ -24,24 +24,24 @@ export default function LoginPage() {
     }, [user, isAuthorized, router]);
 
     return (
-        <div className="flex min-h-screen items-center justify-center bg-background px-4">
-            <Card className="w-full max-w-md border-blue-900/20">
+        <div className="flex min-h-screen items-center justify-center bg-gray-950 px-4">
+            <Card className="w-full max-w-md border-gray-800 bg-gray-900">
                 <CardHeader className="space-y-1 text-center">
-                    <CardTitle className="text-2xl font-bold">
+                    <CardTitle className="text-2xl font-bold text-blue-600">
                         New Client Information Manager
                     </CardTitle>
-                    <CardDescription>
+                    <CardDescription className="text-gray-400">
                         Sign in with your Google account to access the client
                         dashboard
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="flex flex-col gap-4">
-                    <div className="text-center text-sm text-muted-foreground">
+                    <div className="text-center text-sm text-gray-500">
                         <p>Only authorized users can access this dashboard</p>
                     </div>
                     <Button
                         variant="outline"
-                        className="flex w-full items-center gap-2 border-blue-800/30 hover:bg-blue-900/30 hover:text-blue-100"
+                        className="flex w-full items-center gap-2 border-gray-700 hover:bg-gray-800 hover:text-gray-100"
                         onClick={signInWithGoogle}
                         disabled={isLoading}
                     >

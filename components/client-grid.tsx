@@ -115,7 +115,7 @@ export default function ClientGrid() {
     if (loading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
+                <Loader2 className="h-8 w-8 animate-spin text-blue-400" />
             </div>
         );
     }
@@ -123,13 +123,13 @@ export default function ClientGrid() {
     return (
         <div className="space-y-6">
             <div className="flex justify-between items-center">
-                <h2 className="text-xl font-semibold text-blue-300">
+                <h2 className="text-xl font-semibold text-gray-200">
                     {clients.length} Client{clients.length !== 1 ? 's' : ''}
                 </h2>
                 <Button
                     variant="outline"
                     size="sm"
-                    className="text-blue-300 border-blue-800 hover:bg-blue-900/30 hover:text-blue-100"
+                    className="text-gray-300 border-gray-700 hover:bg-gray-800 hover:text-gray-100"
                     onClick={refreshClients}
                     disabled={refreshing}
                 >
@@ -147,12 +147,12 @@ export default function ClientGrid() {
             </div>
 
             {error ? (
-                <div className="text-center text-red-500 p-4 bg-red-100/10 rounded-lg">
+                <div className="text-center text-red-500 p-4 bg-red-900/10 rounded-lg">
                     <p>{error}</p>
                 </div>
             ) : clients.length === 0 ? (
-                <div className="text-center p-8 bg-muted/20 rounded-lg">
-                    <p className="text-muted-foreground">No clients found.</p>
+                <div className="text-center p-8 bg-gray-800/20 rounded-lg">
+                    <p className="text-gray-400">No clients found.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

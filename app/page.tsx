@@ -11,11 +11,11 @@ export default function Home() {
             enableSystem={false}
         >
             <ProtectedRoute>
-                <div className="min-h-screen bg-background flex flex-col">
+                <div className="min-h-screen bg-gray-950 flex flex-col">
                     <Header />
                     <main className="flex-1">
                         <div className="container mx-auto py-8 px-4">
-                            <h1 className="text-3xl font-bold text-primary mb-8">
+                            <h1 className="text-3xl font-bold text-gray-200 mb-8">
                                 Client Information Dashboard
                             </h1>
                             <ClientGrid />

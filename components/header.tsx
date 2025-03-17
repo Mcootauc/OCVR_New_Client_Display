@@ -15,11 +15,11 @@ export default function Header() {
     const { user, signOut, isLoading } = useAuth();
 
     return (
-        <header className="border-b border-blue-900/20 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <header className="border-b border-gray-800 bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-900/60">
             <div className="container flex h-16 items-center justify-between py-4">
                 <div className="flex items-center gap-2">
-                    <span className="text-xl font-bold text-primary">
-                        New Client Information Manager
+                    <span className="text-xl font-bold text-gray-200">
+                        Pet Client Manager
                     </span>
                 </div>
 
@@ -32,7 +32,7 @@ export default function Header() {
                                         variant="ghost"
                                         className="relative h-10 w-10 rounded-full"
                                     >
-                                        <Avatar className="h-10 w-10 border border-blue-800/30">
+                                        <Avatar className="h-10 w-10 border border-gray-700">
                                             <AvatarImage
                                                 src={
                                                     user.user_metadata
@@ -42,7 +42,7 @@ export default function Header() {
                                                     user.user_metadata.full_name
                                                 }
                                             />
-                                            <AvatarFallback className="bg-blue-950 text-blue-200">
+                                            <AvatarFallback className="bg-gray-800 text-gray-200">
                                                 {user.user_metadata.full_name
                                                     ?.split(' ')
                                                     .map((n: string) => n[0])
@@ -60,13 +60,13 @@ export default function Header() {
                                         <p className="font-medium">
                                             {user.user_metadata.full_name}
                                         </p>
-                                        <p className="text-xs text-muted-foreground">
+                                        <p className="text-xs text-gray-400">
                                             {user.email}
                                         </p>
                                     </DropdownMenuItem>
                                     <DropdownMenuItem
                                         onClick={() => signOut()}
-                                        className="text-red-500 focus:text-red-500"
+                                        className="text-red-400 focus:text-red-400"
                                     >
                                         <LogOut className="mr-2 h-4 w-4" />
                                         <span>Log out</span>
