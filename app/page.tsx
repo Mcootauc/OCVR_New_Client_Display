@@ -1,6 +1,7 @@
 import ClientGrid from '@/components/client-grid';
 import { ThemeProvider } from '@/components/theme-provider';
-import { Toaster } from '@/components/ui/toaster';
+import ProtectedRoute from '@/components/protected-route';
+import Header from '@/components/header';
 
 export default function Home() {
     return (
@@ -9,15 +10,19 @@ export default function Home() {
             defaultTheme="dark"
             enableSystem={false}
         >
-            <main className="min-h-screen bg-background">
-                <div className="container mx-auto py-8 px-4">
-                    <h1 className="text-3xl font-bold text-primary mb-8">
-                        Client Information Dashboard
-                    </h1>
-                    <ClientGrid />
+            <ProtectedRoute>
+                <div className="min-h-screen bg-background flex flex-col">
+                    <Header />
+                    <main className="flex-1">
+                        <div className="container mx-auto py-8 px-4">
+                            <h1 className="text-3xl font-bold text-primary mb-8">
+                                Client Information Dashboard
+                            </h1>
+                            <ClientGrid />
+                        </div>
+                    </main>
                 </div>
-            </main>
-            <Toaster />
+            </ProtectedRoute>
         </ThemeProvider>
     );
 }
