@@ -26,7 +26,7 @@ export default function UnauthorizedPage() {
                         Access Denied
                     </CardTitle>
                     <CardDescription>
-                        You don't have permission to access this dashboard
+                        You don&apos;t have permission to access this dashboard
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="text-center">

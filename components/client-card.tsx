@@ -11,7 +11,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clipboard, Check, Dog, Cat, AlertCircle, Trash2 } from 'lucide-react';
-import type { Client } from '@/utils/supabase';
+import type { VVH_Client } from '@/utils/supabase';
 import { formatDate } from '@/utils/format-date';
 import {
     AlertDialog,
@@ -23,9 +23,10 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import { getAge, getAgeStringFromDate } from '@/utils/get-age';
 
 interface ClientCardProps {
-    client: Client;
+    client: VVH_Client;
     onDelete: (id: number) => Promise<void>;
 }
 
@@ -37,18 +38,20 @@ export default function ClientCard({ client, onDelete }: ClientCardProps) {
     const copyToClipboard = () => {
         const clientInfo = `
 Client Information:
-Owner: ${client.owner_name}
-Address: ${client.home_address}, ${client.city}, ${client.state} ${
-            client.zip_code
-        }
+First Name: ${client.owner_name.split(' ')[0]}
+Last Name: ${client.owner_name.split(' ')[1]}
+Address: ${client.street}
+City: ${client.city}
+State: ${client.state}
+Zip Code: ${client.zip_code}
 Phone: ${client.cell_phone}
 Email: ${client.email}
 
 Pet Information:
 Name: ${client.pet_name}
-Species: ${client.species}
+Species: ${getScientificName()}
 Breed: ${client.breed}
-Age: ${client.age}
+Age: ${getAge(client.birth_date)}
 Sex: ${client.sex}
 Spayed/Neutered: ${client.spayed_or_neutered ? 'Yes' : 'No'}
 Color: ${client.color}
@@ -72,6 +75,17 @@ Microchip: ${client.microchip}
         if (species === 'dog') return <Dog className="h-5 w-5 text-blue-400" />;
         if (species === 'cat') return <Cat className="h-5 w-5 text-blue-400" />;
         return <AlertCircle className="h-5 w-5 text-blue-400" />;
+    };
+
+    const getScientificName = () => {
+        const species = client.species?.toLowerCase();
+        if (species === 'dog') return 'Canine';
+        if (species === 'cat') return 'Feline';
+        return 'Unknown';
+    };
+
+    const phoneFormat = (phone: string) => {
+        return phone.replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
     };
 
     return (
@@ -100,12 +114,13 @@ Microchip: ${client.microchip}
                                 Owner Information
                             </h3>
                             <div className="space-y-1 text-sm">
-                                <p>{client.home_address}</p>
+                                <p>{client.owner_name}</p>
+                                <p>{client.street}</p>
                                 <p>
                                     {client.city}, {client.state}{' '}
                                     {client.zip_code}
                                 </p>
-                                <p>{client.cell_phone}</p>
+                                <p>{phoneFormat(client.cell_phone)}</p>
                                 <p className="text-blue-300">{client.email}</p>
                             </div>
                         </div>
@@ -137,7 +152,7 @@ Microchip: ${client.microchip}
                                     <span className="text-muted-foreground">
                                         Age:
                                     </span>{' '}
-                                    {client.age}
+                                    {getAgeStringFromDate(client.birth_date)}
                                 </div>
                                 <div>
                                     <span className="text-muted-foreground">
@@ -204,8 +219,8 @@ Microchip: ${client.microchip}
                     <AlertDialogHeader>
                         <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This will permanently delete {client.owner_name}'s
-                            client record and cannot be undone.
+                            This will permanently delete {client.owner_name}
+                            &apos;s client record and cannot be undone.
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
