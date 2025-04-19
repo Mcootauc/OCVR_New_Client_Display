@@ -53,7 +53,7 @@ Species: ${getScientificName()}
 Breed: ${client.breed}
 Age: ${getAge(client.birth_date)}
 Sex: ${client.sex}
-Spayed/Neutered: ${client.spayed_or_neutered ? 'Yes' : 'No'}
+Spayed Neutered: ${client.spayed_or_neutered ? 'Yes' : 'No'}
 Color: ${client.color}
 Microchip: ${client.microchip}
     `.trim();
